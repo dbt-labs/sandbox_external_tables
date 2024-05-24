@@ -7,7 +7,7 @@ config:
     use_colors: True
 
 sandbox_external_tables:
-  target: postgres
+  target: snowflake
   outputs:
 
     redshift:

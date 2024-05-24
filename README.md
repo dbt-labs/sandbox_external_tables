@@ -67,3 +67,37 @@ The below is for running against Snowflake, but you can substitute `snowflake` f
 1. `dbt seed -t snowflake` to materialize the `people` seed
 2. `dbt run -s path:models/plugins/snowflake -t snowflake`
 3. `dbt test -s path:models/plugins/snowflake -t snowflake`
+
+
+## Current Prototype Status
+
+### v1: a new `dbt source refresh` command
+
+My first prototype was to make a new dbt command `dbt source refresh` that would materialize external tables defined as sources. However, I quickly got out of my depth with dbt Task and Runners. There's too many pieces missing like:
+
+1. sources can't have materializations when sources don't have `.sql` model files and can't be compiled
+2. making a `source` runner requires a lot of refactoring to support things like grants, hooks, and contracts etc
+
+Instead, I opted for an intermediate prototype in which I could continue unblocked.
+
+### v2: a external tables are shell models that use `materialized: external_table`
+
+This works and doesn't require changes to Core only dbt-adapters and the adapter repos themselves!
+
+The big conceit here is that even though an external table is defined entirely in YAML just as in the package:
+
+- the definition must be in a `model:` node not a `source:` node
+- every model needs a `.sql` file with a trivial `SELECT` statement that is ignored
+
+With the limitations, we get out of the box the ability to implement an external_table materialization with many of the same model features we know and love:
+
+- `--select` logic
+- `--full-refresh`
+- actually should test more things...
+
+### ongoing challenges
+
+1. how can dbt figure out that an already existing External Table is an external table and not just a regular table?
+2. how to handle the profligate use of the `jinja` `config` macro to cover the dozens of configuration options?
+
+

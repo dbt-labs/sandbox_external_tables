@@ -3,6 +3,8 @@ git+https://github.com/dbt-labs/dbt-core.git#egg=dbt-core&subdirectory=core
 # dbt-common
 git+https://github.com/dbt-labs/dbt-common.git
 # dbt-adapters (that contains the new materialization)
+# PR: https://github.com/dbt-labs/dbt-adapters/pull/220
 git+https://github.com/dbt-labs/dbt-adapters.git@spike_run_external_materialization
 # dbt-snowflake's spike_run_external_materialization branch
+# PR: https://github.com/dbt-labs/dbt-snowflake/pull/1058
 git+https://github.com/dbt-labs/dbt-snowflake.git@spike_run_external_materialization
