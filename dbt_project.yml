@@ -1,8 +1,8 @@
 
-name: 'dbt_external_tables_integration_tests'
+name: 'sandbox_external_tables'
 version: '1.0'
 
-profile: 'integration_tests'
+profile: 'sandbox_external_tables'
 
 config-version: 2
 
@@ -17,21 +17,17 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-dispatch:
-  - macro_namespace: dbt_external_tables
-    search_order: ['dbt_external_tables_integration_tests', 'dbt_external_tables']
-
 seeds:
   +quote_columns: false
 
 models:
-  dbt_external_tables_integration_tests:
+  sandbox_external_tables:
     plugins:
       snowflake:
         +enabled: "{{ target.type == 'snowflake' }}"
 
 sources:
-  dbt_external_tables_integration_tests:
+  sandbox_external_tables:
     plugins:
       redshift:
         +enabled: "{{ target.type == 'redshift' }}"
@@ -47,7 +43,7 @@ sources:
         +enabled: "{{ target.type == 'sqlserver' }}"
 
 tests:
-  dbt_external_tables_integration_tests:
+  sandbox_external_tables:
     plugins:
       redshift:
         +enabled: "{{ target.type == 'redshift' }}"
