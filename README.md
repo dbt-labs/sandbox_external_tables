@@ -1,3 +1,15 @@
+# ***Archival Notice***
+This repository has been archived.
+
+As a result all of its historical issues and PRs have been closed.
+
+Please *do not clone* this repo without understanding the risk in doing so:
+- It may have unaddressed security vulnerabilities
+- It may have unaddressed bugs
+
+<details>
+   <summary>Click for historical readme</summary>
+
 # Sandbox: External Tables
 
 ## Why
@@ -99,5 +111,6 @@ With the limitations, we get out of the box the ability to implement an external
 
 1. how can dbt figure out that an already existing External Table is an external table and not just a regular table?
 2. how to handle the profligate use of the `jinja` `config` macro to cover the dozens of configuration options?
+
 
 
